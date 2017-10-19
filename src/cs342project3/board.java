@@ -15,6 +15,8 @@ public class board extends JFrame
 	public static int GRIDSIZE = 9;
 	public static int SUBSIZE = 3;
 	private final JPanel[][] miniPanels;
+	private JButton PANEL[];
+	private String panelArray[] = {"1","2","3","4","5","6","7","8","9","X"};
 
 	public board(String puzzle[][])
 	{
@@ -35,6 +37,7 @@ public class board extends JFrame
 
 			
 			GRID.add( Cells[i][j]);
+			Cells[i][j].setBackground(Color.WHITE);
 			
 			if (Cells[i][j].getText() != "")
 			{
@@ -74,10 +77,22 @@ public class board extends JFrame
 				miniPanels[Y][X].add(Cells[i][j]);
 			}
 		}
+		
+		nestedPanel = new JPanel(new GridLayout(10,1),false);
+		PANEL = new JButton[10];
+		Color color  = new Color(255,0,0);
+		for ( int j = 0; j <= 9; j++ )
+		{
+			PANEL[j] = new JButton(panelArray[j]);
+			PANEL[j].setBackground(color);
+			
+			nestedPanel.add(PANEL[j] );
+		}
 
 		GRID.setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
 
 		container.add(GRID, BorderLayout.CENTER);
+		container.add(nestedPanel, BorderLayout.EAST);
 	}
 
 

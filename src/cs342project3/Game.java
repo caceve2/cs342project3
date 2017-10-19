@@ -12,7 +12,7 @@ public class Game {
 		parseFile();
 		printpuzzle();
 		board sudoku  =  new board(puzzle);
-		sudoku.setSize(400, 400);
+		sudoku.setSize(600, 600);
 		sudoku.setVisible(true);
 	}
 	
