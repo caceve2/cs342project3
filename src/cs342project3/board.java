@@ -3,8 +3,7 @@ package cs342project3;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.Border;
-import javax.swing.plaf.ColorUIResource;
-import javax.swing.plaf.FontUIResource;
+
 
 import java.awt.event.*;
 import java.util.*;
@@ -38,7 +37,6 @@ public class board extends JFrame
 		for(int i = 0; i < GRIDSIZE; i++)
 		for ( int j = 0; j < GRIDSIZE; j++ )
 		{
-			UIManager.put("Cells[i][j].disabledForeground", Color.RED);
 			
 			Cells[i][j] = new JButton(puzzle[i][j]);
 			Cells[i][j].addActionListener(GH);
@@ -96,9 +94,10 @@ public class board extends JFrame
 			PANEL[j].setForeground(Color.WHITE);
 			PANEL[j].setBackground(Color.BLACK);
 			
-			nestedPanel.add(PANEL[j] );
+			nestedPanel.add(PANEL[j]);
 		}
-
+		
+		
 		GRID.setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
 
 		container.add(GRID, BorderLayout.CENTER);
