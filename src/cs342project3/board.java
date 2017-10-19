@@ -3,16 +3,12 @@ package cs342project3;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.Border;
-
-import java.util.Timer;
-import java.util.TimerTask;
 import java.awt.event.*;
-//import java.lang.reflect.Array;
 import java.util.*;
 
 public class board extends JFrame
 {
-	private JTextField Cells[][];
+	private JButton Cells[][];
 	private JPanel nestedPanel;
 	private Container container;
 	private JPanel GRID;
@@ -25,18 +21,30 @@ public class board extends JFrame
 		setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 		container = getContentPane( );
 		container.setLayout(new BorderLayout());
+		Font f = new Font ("Serif" , Font.BOLD , 12);
 
-		Cells = new JTextField[GRIDSIZE][GRIDSIZE];
+		Cells = new JButton[GRIDSIZE][GRIDSIZE];
+		
+		
 
 		GRID = new JPanel(new GridLayout(GRIDSIZE,GRIDSIZE));
 		for(int i = 0; i < GRIDSIZE; i++)
 		for ( int j = 0; j < GRIDSIZE; j++ )
 		{
-			Cells[i][j] = new JTextField(puzzle[i][j]);
+			Cells[i][j] = new JButton(puzzle[i][j]);
 
-			//buttons[ count ].addActionListener( bh1 );
+			
 			GRID.add( Cells[i][j]);
-			Cells[i][j].setHorizontalAlignment(JTextField.CENTER);
+			
+			if (Cells[i][j].getText() != "")
+			{
+				
+				Cells[i][j].setBackground(Color.GREEN);
+				
+				Cells[i][j].setFont(f);
+				
+			}
+			
 		}
 		
 
