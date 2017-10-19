@@ -6,10 +6,12 @@ import java.util.Scanner;
 
 public class Game {
 	private String puzzle[][] = new String[9][9];
-	
+	private File selectedFile;
 	public Game() throws FileNotFoundException
 	{
-		parseFile();
+		FileChooser getFile = new FileChooser();
+		selectedFile = getFile.getFile();
+		parseFile(selectedFile);
 		printpuzzle();
 		board sudoku  =  new board(puzzle);
 		sudoku.setSize(600, 600);
@@ -17,9 +19,9 @@ public class Game {
 	}
 	
 	
-	public void parseFile() throws FileNotFoundException
+	public void parseFile(File file) throws FileNotFoundException
 	{
-		File file = new File("proj3dat1");
+		//File file = new File("proj3dat1");
 		Scanner input = new Scanner(file);
 
 		while(input.hasNext()) {
