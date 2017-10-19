@@ -5,13 +5,13 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Game {
-	private int puzzle[][] = new int[9][9];
+	private String puzzle[][] = new String[9][9];
 	
 	public Game() throws FileNotFoundException
 	{
 		parseFile();
 		printpuzzle();
-		board sudoku  =  new board();
+		board sudoku  =  new board(puzzle);
 		sudoku.setSize(400, 400);
 		sudoku.setVisible(true);
 	}
@@ -28,10 +28,9 @@ public class Game {
 		    String nextToken1 = input.next();
 		    int j = Integer.parseInt(nextToken1);
 		    String nextToken2 = input.next();
-		    int k = Integer.parseInt(nextToken2);
-		    puzzle[i-1][j-1] = k;
-		    //or to process line by line
-		    //String nextLine = input.nextLine();
+		 
+		    puzzle[i-1][j-1] = nextToken2;
+		  
 		}
 		input.close();
 	}
