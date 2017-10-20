@@ -20,13 +20,16 @@ public class board extends JFrame
 	private JButton PANEL[];
 	private String panelArray[] = {"1","2","3","4","5","6","7","8","9","X"};
 	private String SELECTEDNUMBER;
-
+	private JMenuItems gameMenuBar = new JMenuItems();
+	
+	
 	public board(String puzzle[][])
 	{
 		setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 		container = getContentPane( );
 		container.setLayout(new BorderLayout());
-	
+		Font f = new Font ("Serif" , Font.BOLD , 12);
+
 		Cells = new JButton[GRIDSIZE][GRIDSIZE];
 		
 		PANELHandler PH = new PANELHandler();
@@ -102,6 +105,7 @@ public class board extends JFrame
 
 		container.add(GRID, BorderLayout.CENTER);
 		container.add(nestedPanel, BorderLayout.EAST);
+		setMenuBar();
 	}
 	
 	private class PANELHandler implements ActionListener
@@ -150,6 +154,16 @@ public class board extends JFrame
 			
 		}
 	}
+	
+	private void setMenuBar()
+	{ 
+		JMenuBar gameMenuBar_ = new JMenuBar();
+		gameMenuBar_ = gameMenuBar.returnBoard();
+		
+		container.add(gameMenuBar_, BorderLayout.NORTH);
+	}
+	
+
 
 
 
