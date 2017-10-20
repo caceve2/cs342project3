@@ -25,7 +25,7 @@ public class board extends JFrame
 	
 	public board(String puzzle[][])
 	{
-		setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
 		container = getContentPane( );
 		container.setLayout(new BorderLayout());
 		Font f = new Font ("Serif" , Font.BOLD , 12);

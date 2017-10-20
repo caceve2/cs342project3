@@ -7,6 +7,8 @@ import java.util.Scanner;
 public class Game {
 	private String puzzle[][] = new String[9][9];
 	private File selectedFile;
+	
+	
 	public Game() throws FileNotFoundException
 	{
 		//FileChooser getFile = new FileChooser();

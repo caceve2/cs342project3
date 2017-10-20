@@ -2,6 +2,7 @@ package cs342project3;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.io.FileNotFoundException;
 
 
 public class JMenuItems extends JFrame{
@@ -44,9 +45,21 @@ public class JMenuItems extends JFrame{
 		fileMenu.add(loadPuzzle);
 		loadPuzzle.addActionListener(new ActionListener()
 				{
+			@Override
 			public void actionPerformed(ActionEvent event)
 			{
-					FileChooser fl = new FileChooser();
+				java.awt.Window win[] = java.awt.Window.getWindows(); 
+				win[0].dispose();
+				
+					try {
+						new Game();
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					
+					
 			}
 			}
 	);
