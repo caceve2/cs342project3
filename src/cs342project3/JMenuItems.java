@@ -25,7 +25,7 @@ public class JMenuItems extends JFrame{
 	private JMenuItem useAllAlgorithms= new JMenuItem( "Fill In" );
 	
 	
-	public JMenuBar editMenuBar()
+	public JMenuItems()
 	{
 		setupFileMenu();
 		setupHelpMenu();
@@ -34,13 +34,14 @@ public class JMenuItems extends JFrame{
 		boardMenu.add(fileMenu);
 		boardMenu.add(helpMenu);
 		boardMenu.add(hintsMenu);
+	
 		
-		return boardMenu;
 	}
 	
 	private void setupFileMenu()
 	{
 		fileMenu.add(loadPuzzle);
+		
 		fileMenu.add(storePuzzle);
 		fileMenu.add(exitPuzzle);
 	}
@@ -60,6 +61,11 @@ public class JMenuItems extends JFrame{
 		hintsMenu.add(lockedCandidateAlgorithm);
 		hintsMenu.add(nakedPairsAlgorithm);
 		hintsMenu.add(useAllAlgorithms);
+	}
+	
+	public JMenuBar returnBoard()
+	{
+		return boardMenu;
 	}
 
 }
