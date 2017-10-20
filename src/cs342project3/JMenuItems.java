@@ -1,6 +1,7 @@
 package cs342project3;
 
 import javax.swing.*;
+import java.awt.event.*;
 
 
 public class JMenuItems extends JFrame{
@@ -41,6 +42,14 @@ public class JMenuItems extends JFrame{
 	private void setupFileMenu()
 	{
 		fileMenu.add(loadPuzzle);
+		loadPuzzle.addActionListener(new ActionListener()
+				{
+			public void actionPerformed(ActionEvent event)
+			{
+					FileChooser fl = new FileChooser();
+			}
+			}
+	);
 		
 		fileMenu.add(storePuzzle);
 		fileMenu.add(exitPuzzle);
