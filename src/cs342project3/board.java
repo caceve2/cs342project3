@@ -29,6 +29,7 @@ public class board extends JFrame
 		Font f = new Font ("Serif" , Font.BOLD , 12);
 
 		Cells = new JButton[GRIDSIZE][GRIDSIZE];
+		
 		PANELHandler PH = new PANELHandler();
 		GRIDHandler GH = new GRIDHandler();
 		
@@ -50,7 +51,7 @@ public class board extends JFrame
 			{
 				
 				Cells[i][j].removeActionListener(GH);
-				
+				Cells[i][j].setForeground(Color.BLUE);
 				
 			}
 			
@@ -141,8 +142,6 @@ public class board extends JFrame
 							Cells[i][j].setText("");
 						else
 							Cells[i][j].setText(SELECTEDNUMBER);
-					
-					
 					
 					
 					
