@@ -26,8 +26,7 @@ public class board extends JFrame
 		setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 		container = getContentPane( );
 		container.setLayout(new BorderLayout());
-		Font f = new Font ("Serif" , Font.BOLD , 12);
-
+	
 		Cells = new JButton[GRIDSIZE][GRIDSIZE];
 		PANELHandler PH = new PANELHandler();
 		GRIDHandler GH = new GRIDHandler();

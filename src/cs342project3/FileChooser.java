@@ -7,11 +7,12 @@ import javax.swing.filechooser.FileSystemView;
 
 public class FileChooser {
 	private File selectedFile;
+	private JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 	
 	public FileChooser() 
 	{
 
-		JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+		
 
 		int returnValue = jfc.showOpenDialog(null);
 		// int returnValue = jfc.showSaveDialog(null);
@@ -26,6 +27,7 @@ public class FileChooser {
 	{
 		return selectedFile;
 	}
+	
 	
 
 }
