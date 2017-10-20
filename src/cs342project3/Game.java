@@ -9,8 +9,9 @@ public class Game {
 	private File selectedFile;
 	public Game() throws FileNotFoundException
 	{
-		FileChooser getFile = new FileChooser();
-		selectedFile = getFile.getFile();
+		//FileChooser getFile = new FileChooser();
+		//selectedFile = getFile.getFile();
+		selectedFile = new File("proj3dat1");
 		parseFile(selectedFile);
 		printpuzzle();
 		board sudoku  =  new board(puzzle);
