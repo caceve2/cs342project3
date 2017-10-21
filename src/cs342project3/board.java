@@ -163,6 +163,17 @@ public class board extends JFrame
 		container.add(gameMenuBar_, BorderLayout.NORTH);
 	}
 	
+	public String[][] getBoard()
+	{
+		String tempPuzzle[][] = new String[GRIDSIZE][GRIDSIZE];
+		for(int i = 0 ; i < GRIDSIZE; i++)
+			for ( int j = 0; j < GRIDSIZE; j++ )
+			{
+				tempPuzzle[i][j] = Cells[i][j].getText();
+			}
+		
+		return tempPuzzle;
+	}
 
 
 

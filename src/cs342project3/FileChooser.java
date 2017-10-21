@@ -23,6 +23,7 @@ public class FileChooser {
 		}
 
 	}
+	
 	public File getFile() 
 	{
 		return selectedFile;

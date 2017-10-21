@@ -54,7 +54,6 @@ public class JMenuItems extends JFrame{
 					try {
 						new Game();
 					} catch (FileNotFoundException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					
