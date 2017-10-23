@@ -18,14 +18,17 @@ public class JMenuItems extends JFrame{
 	private JMenuItem howToUse = new JMenuItem( "How To Use Interface" );
 	private JMenuItem aboutItem = new JMenuItem( "About" );
 	
-	private JMenu hintsMenu = new JMenu( "File" );
-	private JMenuItem checkOnFill= new JMenuItem( "Check on Fill" );
+	private JMenu hintsMenu = new JMenu( "Hints" );
+	private JCheckBoxMenuItem candidateList= new JCheckBoxMenuItem( "?" );
+	private JCheckBoxMenuItem checkOnFill= new JCheckBoxMenuItem( "Check on Fill" );
 	private JMenuItem singleAlgorithm = new JMenuItem( "Single Algorithm" );
 	private JMenuItem hiddenSingleAlgorithm= new JMenuItem( "Hidden Single Algorithm" );
 	private JMenuItem lockedCandidateAlgorithm= new JMenuItem( "Locked Candidate Algorithm" );
 	private JMenuItem nakedPairsAlgorithm= new JMenuItem( "Naked Pairs Algorithm" );
 	private JMenuItem useAllAlgorithms= new JMenuItem( "Fill In" );
 	
+	private boolean isSelectedCOF = false;
+	private boolean isSelectedCL = false;
 	
 	public JMenuItems()
 	{
@@ -76,7 +79,32 @@ public class JMenuItems extends JFrame{
 	
 	private void setupHintsMenu()
 	{
+		hintsMenu.add(candidateList);
+		candidateList.addActionListener(new ActionListener()
+		{
+	@Override
+	public void actionPerformed(ActionEvent event)
+	{
+		AbstractButton	button = (AbstractButton) event.getSource();
+			isSelectedCL = button.getModel().isSelected();
+			
+	}
+	}
+);
+		
 		hintsMenu.add(checkOnFill);
+		checkOnFill.addActionListener(new ActionListener()
+		{
+	@Override
+	public void actionPerformed(ActionEvent event)
+	{
+		AbstractButton	button = (AbstractButton) event.getSource();
+			isSelectedCOF = button.getModel().isSelected();
+			
+	}
+	}
+);
+		
 		hintsMenu.add(singleAlgorithm);
 		hintsMenu.add(hiddenSingleAlgorithm);
 		hintsMenu.add(lockedCandidateAlgorithm);
@@ -84,6 +112,14 @@ public class JMenuItems extends JFrame{
 		hintsMenu.add(useAllAlgorithms);
 	}
 	
+	public boolean checkOnFillSelected()
+	{
+		return isSelectedCOF;
+	}
+	public boolean candidateListSelected()
+	{
+		return isSelectedCL;
+	}
 	public JMenuBar returnBoard()
 	{
 		return boardMenu;

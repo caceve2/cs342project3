@@ -16,11 +16,13 @@ public class board extends JFrame
 	private JPanel GRID;
 	public static int GRIDSIZE = 9;
 	public static int SUBSIZE = 3;
-	private final JPanel[][] miniPanels;
+	private JPanel[][] miniPanels;
 	private JButton PANEL[];
 	private String panelArray[] = {"1","2","3","4","5","6","7","8","9","X"};
-	private String SELECTEDNUMBER;
+	private String SELECTEDNUMBER = "";
 	private JMenuItems gameMenuBar = new JMenuItems();
+	private JPanel candidatePanel;
+	private JLabel candidateLabel;
 	
 	
 	public board(String puzzle[][])
@@ -88,6 +90,11 @@ public class board extends JFrame
 		}
 		
 		nestedPanel = new JPanel(new GridLayout(10,1),false);
+	    candidatePanel = new JPanel (new GridLayout(1,10),false);
+		candidateLabel = new JLabel();
+		candidatePanel.add(candidateLabel);
+		
+		
 		PANEL = new JButton[10];
 		
 		for ( int j = 0; j <= 9; j++ )
@@ -102,9 +109,10 @@ public class board extends JFrame
 		
 		
 		GRID.setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
-
+		
 		container.add(GRID, BorderLayout.CENTER);
 		container.add(nestedPanel, BorderLayout.EAST);
+		container.add(candidatePanel, BorderLayout.SOUTH);
 		setMenuBar();
 	}
 	
@@ -139,15 +147,46 @@ public class board extends JFrame
 			{
 				if(Cells[i][j] == pushed)
 				{
-		
+					candidateList candList = new candidateList(getBoard(), i , j);
 					
+					ArrayList<String> temparray = candList.returnArray();
+					
+					if(gameMenuBar.candidateListSelected())
+					{
+						
+						String list = "candidate list: ";
+						for(String s: temparray)
+						{
+							list += s + " \t";
+						}
+						candidateLabel.setText(list);
+						
+						
+						
+						
+					}
+					
+					if(gameMenuBar.checkOnFillSelected())
+					{
+						
+						
+					   if(SELECTEDNUMBER == "X" || SELECTEDNUMBER == "")
+							Cells[i][j].setText("");
+					 
+					   else if(!temparray.contains(SELECTEDNUMBER))
+							JOptionPane.showMessageDialog( null,"WRONG INPUT");
+					   else
+							Cells[i][j].setText(SELECTEDNUMBER);
+					}
+					else
+					{
 						if(SELECTEDNUMBER == "X")
 							Cells[i][j].setText("");
 						else
 							Cells[i][j].setText(SELECTEDNUMBER);
-					
-					
-					
+					}
+					candList.eraseArray();
+						
 				}
 
 			}
@@ -162,6 +201,7 @@ public class board extends JFrame
 		
 		container.add(gameMenuBar_, BorderLayout.NORTH);
 	}
+	
 	
 	public String[][] getBoard()
 	{

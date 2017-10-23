@@ -21,7 +21,7 @@ public class FileChooser {
 			 selectedFile = jfc.getSelectedFile();
 			System.out.println(selectedFile.getAbsolutePath());
 		}
-
+		
 	}
 	
 	public File getFile() 
