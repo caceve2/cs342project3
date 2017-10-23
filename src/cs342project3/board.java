@@ -169,7 +169,6 @@ public class board extends JFrame
 					if(gameMenuBar.checkOnFillSelected())
 					{
 						
-						
 					   if(SELECTEDNUMBER == "X" || SELECTEDNUMBER == "")
 							Cells[i][j].setText("");
 					 
