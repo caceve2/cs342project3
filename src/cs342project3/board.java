@@ -244,7 +244,7 @@ public class board extends JFrame
 					if(Cells[i][j].getText() == "" && count != 1)
 					{
 						candidateList candList = new candidateList(getBoard(),i,j);
-								ArrayList<String> temparray = candList.returnArray();
+						ArrayList<String> temparray = candList.returnArray();
 						
 						if(temparray.size() == 1)
 						{
