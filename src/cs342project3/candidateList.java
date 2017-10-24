@@ -2,7 +2,7 @@ package cs342project3;
 
 import java.util.ArrayList;
 
-import javax.swing.JButton;
+
 
 public class candidateList extends board {
 	
@@ -17,6 +17,7 @@ public class candidateList extends board {
 		for (int i = 1; i<10; i++ )
 			candidateArray.add(Integer.toString(i));
 		
+		
 		for(int i = 0 ; i < GRIDSIZE; i++)
 		{
 			if(candidateArray.contains(puzzle[posX][i]))
@@ -29,6 +30,7 @@ public class candidateList extends board {
 			 candidateArray.remove(puzzle[i][posY]);
 			}
 		}
+		
 		
 		for(int k = 0; k< 3; k++)
 			for(int j=0; j<3; j++)

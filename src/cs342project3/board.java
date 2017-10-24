@@ -20,17 +20,18 @@ public class board extends JFrame
 	private JButton PANEL[];
 	private String panelArray[] = {"1","2","3","4","5","6","7","8","9","X"};
 	private String SELECTEDNUMBER = "";
-	private JMenuItems gameMenuBar = new JMenuItems();
+	private JMenuItems gameMenuBar;
 	private JPanel candidatePanel;
 	private JLabel candidateLabel;
-	
+	protected Hashtable<Integer,ArrayList<String>> puzzleTable = new Hashtable<Integer,ArrayList<String>>();
 	
 	public board(String puzzle[][])
 	{
+		
 		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
 		container = getContentPane( );
 		container.setLayout(new BorderLayout());
-		Font f = new Font ("Serif" , Font.BOLD , 12);
+		
 
 		Cells = new JButton[GRIDSIZE][GRIDSIZE];
 		
@@ -89,6 +90,8 @@ public class board extends JFrame
 			}
 		}
 		
+		gameMenuBar = new JMenuItems();
+		
 		nestedPanel = new JPanel(new GridLayout(10,1),false);
 	    candidatePanel = new JPanel (new GridLayout(1,10),false);
 		candidateLabel = new JLabel();
@@ -114,6 +117,9 @@ public class board extends JFrame
 		container.add(nestedPanel, BorderLayout.EAST);
 		container.add(candidatePanel, BorderLayout.SOUTH);
 		setMenuBar();
+		
+		
+	
 	}
 	
 	private class PANELHandler implements ActionListener
@@ -147,9 +153,10 @@ public class board extends JFrame
 			{
 				if(Cells[i][j] == pushed)
 				{
-					candidateList candList = new candidateList(getBoard(), i , j);
 					
-					ArrayList<String> temparray = candList.returnArray();
+					
+		
+					ArrayList<String> temparray = puzzleTable.get(i^j);
 					
 					if(gameMenuBar.candidateListSelected())
 					{
@@ -184,8 +191,7 @@ public class board extends JFrame
 						else
 							Cells[i][j].setText(SELECTEDNUMBER);
 					}
-					candList.eraseArray();
-						
+					
 				}
 
 			}
@@ -193,11 +199,81 @@ public class board extends JFrame
 		}
 	}
 	
+	private class singleHandler implements ActionListener
+	{
+		int count = 0;
+		public void actionPerformed(ActionEvent event)
+		{
+			for(int i = 0 ; i < GRIDSIZE; i++)
+			{
+				for ( int j = 0; j < GRIDSIZE; j++ )
+				{
+					if(Cells[i][j].getText() == "" && count != 1)
+					{
+						candidateList candList = new candidateList(getBoard(),i,j);
+						ArrayList<String> temparray = candList.returnArray();
+						
+						if(temparray.size() == 1)
+						{
+							single newSingleAL =new single(getBoard(),i,j);
+							Cells[i][j].setText(newSingleAL.getValue());
+							
+							count++;
+						}
+						
+						
+					}
+					
+				}
+				
+			}
+			count =0;
+			
+		}
+	}
+	
+	private class hiddenSingleHandler implements ActionListener
+	{
+		int count = 0;
+		public void actionPerformed(ActionEvent event)
+		{
+			for(int i = 0 ; i < GRIDSIZE; i++)
+			{
+				for ( int j = 0; j < GRIDSIZE; j++ )
+				{
+					if(Cells[i][j].getText() == "" && count != 1)
+					{
+						candidateList candList = new candidateList(getBoard(),i,j);
+								ArrayList<String> temparray = candList.returnArray();
+						
+						if(temparray.size() == 1)
+						{
+							hiddenSingle newHiddenSingleAL =new hiddenSingle(getBoard(),i,j);
+							Cells[i][j].setText(newHiddenSingleAL.getValue());
+							count++;
+						}
+						
+						
+					}
+					
+				}
+				
+			}
+			count =0;
+			
+		}
+	}
+	
+	
+	
 	private void setMenuBar()
 	{ 
 		JMenuBar gameMenuBar_ = new JMenuBar();
 		gameMenuBar_ = gameMenuBar.returnBoard();
-		
+		singleHandler SH = new singleHandler();
+		hiddenSingleHandler HS = new hiddenSingleHandler();
+		gameMenuBar.getSingleAl().addActionListener(SH);
+		gameMenuBar.getHiddenSingleAl().addActionListener(HS);
 		container.add(gameMenuBar_, BorderLayout.NORTH);
 	}
 	
@@ -214,7 +290,7 @@ public class board extends JFrame
 		return tempPuzzle;
 	}
 
-
+	
 
 
 
