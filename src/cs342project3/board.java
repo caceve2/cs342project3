@@ -156,7 +156,8 @@ public class board extends JFrame
 					
 					
 		
-					ArrayList<String> temparray = puzzleTable.get(i^j);
+					candidateList candList = new candidateList(getBoard(),i,j);
+					ArrayList<String> temparray = candList.returnArray();
 					
 					if(gameMenuBar.candidateListSelected())
 					{
