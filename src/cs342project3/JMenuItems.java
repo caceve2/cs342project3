@@ -5,7 +5,7 @@ import java.awt.event.*;
 import java.io.FileNotFoundException;
 
 
-public class JMenuItems  {
+public class JMenuItems extends JPanel {
   private  JMenuBar boardMenu=new JMenuBar();
   
   private JMenu fileMenu = new JMenu( "File" );
@@ -71,13 +71,48 @@ public class JMenuItems  {
     
     fileMenu.add(storePuzzle);
     fileMenu.add(exitPuzzle);
+    exitPuzzle.addActionListener(new ActionListener()
+    {
+    	public void actionPerformed(ActionEvent event)
+    	{
+    		System.exit(0);
+    	}
+    });
   }
   
   private void setupHelpMenu()
   {
     helpMenu.add(howToPlay);
+    howToPlay.addActionListener(new ActionListener()
+    {
+    	public void actionPerformed(ActionEvent event)
+    	{
+    		JOptionPane.showMessageDialog(JMenuItems.this, "The objective is to fill a 9x9 grid so that each column, each row,\nand each of the nine 3x3 boxes (also called blocks or regions)\ncontains the digits from 1 to 9. \r\n" + 
+    				"\r\n" + 
+    				"A cell is the smallest block in the game. A row , column and region consists of 9 cells\nand the whole game consists of 81 cells. A region has thicker lines surrounding it.\nThis simply makes it easier to play the game.\n", "Help", JOptionPane.PLAIN_MESSAGE);
+    	}
+    });
+    
     helpMenu.add(howToUse);
-    helpMenu.add(aboutItem);		
+    howToUse.addActionListener(new ActionListener()
+    {
+    	public void actionPerformed(ActionEvent event)
+    	{
+    		JOptionPane.showMessageDialog(JMenuItems.this, "You can select desired number from the right most column to input into cell\nSelected number will stay selected until deselected\r\n"
+    				 + "\nFile menu allows you to load a new game from a different .txt file\nor save your current game"
+    				 + "\n\nHelp menu contains useful algorithms that will help solve the soduko", "How To Use", JOptionPane.PLAIN_MESSAGE);
+    	}
+    });
+    
+    helpMenu.add(aboutItem);	
+    aboutItem.addActionListener(new ActionListener()
+    {
+    	public void actionPerformed(ActionEvent event)
+    	{
+    		JOptionPane.showMessageDialog(JMenuItems.this, "Authors: Carlos Aceves, David Sanchez\n"
+    													  +"NetId's: caceve2, dsanch42\n", "About", JOptionPane.PLAIN_MESSAGE);
+    	}
+    });
   }
   
   private void setupHintsMenu()
