@@ -58,7 +58,7 @@ public class JMenuItems extends JPanel {
       public void actionPerformed(ActionEvent event)
       {
         java.awt.Window win[] = java.awt.Window.getWindows(); 
-        win[0].dispose();
+        win[2].dispose();
         
         try {
           new Game();
