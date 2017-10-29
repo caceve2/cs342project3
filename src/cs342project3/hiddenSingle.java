@@ -1,5 +1,6 @@
 package cs342project3;
-
+//Carlos Aceves and David Sanchez
+//class for the hidden singles algorithm
 import java.util.ArrayList;
 
 public class hiddenSingle extends candidateList {
@@ -9,16 +10,19 @@ public class hiddenSingle extends candidateList {
 	
 	public hiddenSingle(String[][] puzzle, int posX, int posY) {
 		super(puzzle, posX, posY);
+		//gets candidate list of current cell
 		candidateList tempCandArray  = new candidateList(getBoard(), posX, posY);
 		
 		temparray = tempCandArray.returnArray();
 		
+		//checks candidate list of other cells in the column
 		for(int i = 0 ; i < 9; i++)
 		{
 			if(puzzle[posX][i] == "")
 			{
 			tempCandArray = new candidateList(getBoard(),posX,i);
 			
+			//checks to see if any candidate is in the list and removes them
 			for(String s: tempCandArray.returnArray())
 			{
 				if(temparray.contains(s))
@@ -29,6 +33,7 @@ public class hiddenSingle extends candidateList {
 			
 		}
 		
+		//checks candidate list of other cells in the row
 		for(int i = 0 ; i < 9; i++)
 		{
 			if(puzzle[i][posY] == "")
@@ -45,7 +50,7 @@ public class hiddenSingle extends candidateList {
 			
 		}
 		
-		
+		//checks candidate lists of other cells in current grid
 		for(int k = 0; k< 3; k++)
 			for(int j=0; j<3; j++)
 			{
@@ -65,6 +70,7 @@ public class hiddenSingle extends candidateList {
 		value = temparray.get(0);
 		
 	}
+	//returns the value
 	public String getValue()
 	{
 		return value;

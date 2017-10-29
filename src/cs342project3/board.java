@@ -1,4 +1,6 @@
 package cs342project3;
+//Carlos Aceves and David Sanchez
+//class for board and handlers for buttons
 
 import java.awt.*;
 import javax.swing.*;
@@ -32,13 +34,14 @@ public class board extends JFrame
 		container = getContentPane( );
 		container.setLayout(new BorderLayout());
 		
-
+		// cells for game
 		Cells = new JButton[GRIDSIZE][GRIDSIZE];
 		
+		//handlers for Panel and Grid
 		PANELHandler PH = new PANELHandler();
 		GRIDHandler GH = new GRIDHandler();
 		
-
+		//get Grid and insert buttons
 		GRID = new JPanel(new GridLayout(GRIDSIZE,GRIDSIZE));
 		for(int i = 0; i < GRIDSIZE; i++)
 		for ( int j = 0; j < GRIDSIZE; j++ )
@@ -48,10 +51,10 @@ public class board extends JFrame
 			Cells[i][j].addActionListener(GH);
 			
 			GRID.add( Cells[i][j]);
-			
+			//set background to white
 			Cells[i][j].setBackground(Color.WHITE);
 			
-			
+			//if cells are not blank then get rid of action listener and set the numbers to blue
 			if (Cells[i][j].getText() != "")
 			{
 				
@@ -62,15 +65,18 @@ public class board extends JFrame
 			
 		}
 		
-
+		
+		//get miniPanels to get 9 grids
 		int miniPanelSize = (int) Math.sqrt(GRIDSIZE);
 		GRID.setLayout(new GridLayout(miniPanelSize,miniPanelSize));
 
 		miniPanels = new JPanel[miniPanelSize]
 		[miniPanelSize];
-
+		
+		//insert borders
 		Border minisquareBorder = BorderFactory.createLineBorder(Color.BLACK, 1);
-
+		
+		//set up panels
 		for (int i = 0; i < miniPanelSize; ++i) {
 			for (int j = 0; j < miniPanelSize; ++j) {
 				JPanel panel = new JPanel();
@@ -80,7 +86,8 @@ public class board extends JFrame
 				GRID.add(panel);
 			}
 		}
-
+		
+		//insert buttons into panels
 		for (int i = 0; i < GRIDSIZE; ++i) {
 			for (int j = 0; j < GRIDSIZE; ++j) {
 				int X = j / miniPanelSize;
@@ -90,6 +97,7 @@ public class board extends JFrame
 			}
 		}
 		
+		// insert panels and labels into the board
 		gameMenuBar = new JMenuItems();
 		
 		nestedPanel = new JPanel(new GridLayout(10,1),false);
@@ -97,7 +105,7 @@ public class board extends JFrame
 		candidateLabel = new JLabel();
 		candidatePanel.add(candidateLabel);
 		
-		
+		// get Panel for choosing buttons
 		PANEL = new JButton[10];
 		
 		for ( int j = 0; j <= 9; j++ )
@@ -112,7 +120,7 @@ public class board extends JFrame
 		
 		
 		GRID.setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
-		
+		// add all elements into container
 		container.add(GRID, BorderLayout.CENTER);
 		container.add(nestedPanel, BorderLayout.EAST);
 		container.add(candidatePanel, BorderLayout.SOUTH);
@@ -122,6 +130,7 @@ public class board extends JFrame
 	
 	}
 	
+	// class for handling the Panel
 	private class PANELHandler implements ActionListener
 	{
 		public void actionPerformed( ActionEvent event )
@@ -142,6 +151,7 @@ public class board extends JFrame
 
 	}
 	
+	// class for handling the Grid
 	private class GRIDHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
@@ -173,13 +183,13 @@ public class board extends JFrame
 						
 						
 					}
-					
+					//checks to see if checkonfill button is selcetd
 					if(gameMenuBar.checkOnFillSelected())
 					{
 						
 					   if(SELECTEDNUMBER == "X" || SELECTEDNUMBER == "")
 							Cells[i][j].setText("");
-					 
+					   //shows message if not a possible input
 					   else if(!temparray.contains(SELECTEDNUMBER))
 							JOptionPane.showMessageDialog( null,"WRONG INPUT");
 					   else
@@ -200,6 +210,7 @@ public class board extends JFrame
 		}
 	}
 	
+	//class for handling the singles algorithm
 	private class singleHandler implements ActionListener
 	{
 		int count = 0;
@@ -216,10 +227,11 @@ public class board extends JFrame
 						
 						if(temparray.size() == 1)
 						{
+							//change value of if one of cell
 							single newSingleAL =new single(getBoard(),i,j);
 							Cells[i][j].setText(newSingleAL.getValue());
 							
-							count++;
+							count++; //so it will iterate only once
 						}
 						
 						
@@ -233,6 +245,7 @@ public class board extends JFrame
 		}
 	}
 	
+	//class for handling the hidden singles algorithm
 	private class hiddenSingleHandler implements ActionListener
 	{
 		int count = 0;
@@ -266,7 +279,7 @@ public class board extends JFrame
 	}
 	
 	
-	
+	// will set the menu bar
 	private void setMenuBar()
 	{ 
 		JMenuBar gameMenuBar_ = new JMenuBar();
@@ -278,7 +291,7 @@ public class board extends JFrame
 		container.add(gameMenuBar_, BorderLayout.NORTH);
 	}
 	
-	
+	// gets the game state of the puzzle
 	public String[][] getBoard()
 	{
 		String tempPuzzle[][] = new String[GRIDSIZE][GRIDSIZE];

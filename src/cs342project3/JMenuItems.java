@@ -1,5 +1,6 @@
 package cs342project3;
-
+//Carlos Aceves and David Sanchez
+// Class to set up the help menu
 import javax.swing.*;
 import java.awt.event.*;
 import java.io.FileNotFoundException;
@@ -30,7 +31,7 @@ public class JMenuItems extends JPanel {
   private boolean isSelectedCOF = false;
   private boolean isSelectedCL = false;
   
-  private String singlesValue;
+  
   public JMenuItems()
   {
 	
@@ -46,9 +47,11 @@ public class JMenuItems extends JPanel {
     
   }
   
+  //sets up the file menu to 
   private void setupFileMenu()
   {
     fileMenu.add(loadPuzzle);
+    //basically starts a new game with a new puzzle chosen
     loadPuzzle.addActionListener(new ActionListener()
     {
       @Override
@@ -71,6 +74,7 @@ public class JMenuItems extends JPanel {
     
     fileMenu.add(storePuzzle);
     fileMenu.add(exitPuzzle);
+    //exits game
     exitPuzzle.addActionListener(new ActionListener()
     {
     	public void actionPerformed(ActionEvent event)
@@ -80,6 +84,7 @@ public class JMenuItems extends JPanel {
     });
   }
   
+  //sets up help section
   private void setupHelpMenu()
   {
     helpMenu.add(howToPlay);
@@ -114,10 +119,11 @@ public class JMenuItems extends JPanel {
     	}
     });
   }
-  
+  //sets up the hint menu
   private void setupHintsMenu()
   {
     hintsMenu.add(candidateList);
+    //checks if button is selected for checking candidates list
     candidateList.addActionListener(new ActionListener()
     {
       @Override
@@ -131,6 +137,7 @@ public class JMenuItems extends JPanel {
     );
     
     hintsMenu.add(checkOnFill);
+    //checks if button is selected for checking on fill
     checkOnFill.addActionListener(new ActionListener()
     {
       @Override
@@ -142,7 +149,7 @@ public class JMenuItems extends JPanel {
       }
     }
     );
-    
+    //add them to menu
     hintsMenu.add(singleAlgorithm);
     hintsMenu.add(hiddenSingleAlgorithm);
     hintsMenu.add(lockedCandidateAlgorithm);
@@ -151,15 +158,17 @@ public class JMenuItems extends JPanel {
     
   }
   
+  //get button for singles algorithm /button handler is in board class
   public JMenuItem getSingleAl()
   {
 	  return singleAlgorithm;
   }
+  //get button for hidden singles algorithm /button handler is in board class
   public JMenuItem getHiddenSingleAl()
   {
 	  return hiddenSingleAlgorithm;
   }
-  
+  // return is selected or not
   public boolean checkOnFillSelected()
   {
     return isSelectedCOF;
@@ -168,6 +177,8 @@ public class JMenuItems extends JPanel {
   {
     return isSelectedCL;
   }
+  
+  // returns the help menu bar
   public JMenuBar returnBoard()
   {
     return boardMenu;

@@ -1,4 +1,6 @@
 package cs342project3;
+//Carlos Aceves and David Sanchez
+//class to start the game and parse the files
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,12 +10,12 @@ public class Game {
 	private String puzzle[][] = new String[9][9];
 	private File selectedFile;
 	
-	
+	//starts game of soduku
 	public Game() throws FileNotFoundException
 	{
-		//FileChooser getFile = new FileChooser();
-		//selectedFile = getFile.getFile();
-		selectedFile = new File("proj3dat1");
+		FileChooser getFile = new FileChooser();
+		selectedFile = getFile.getFile();
+		
 		parseFile(selectedFile);
 		printpuzzle();
 		board sudoku  =  new board(puzzle);
@@ -21,10 +23,10 @@ public class Game {
 		sudoku.setVisible(true);
 	}
 	
-	
+	//parses the file that is chosen
 	public void parseFile(File file) throws FileNotFoundException
 	{
-		//File file = new File("proj3dat1");
+		
 		Scanner input = new Scanner(file);
 
 		while(input.hasNext()) {
@@ -40,6 +42,7 @@ public class Game {
 		input.close();
 	}
 	
+	//prints puzzle for debugging
 	public void printpuzzle()
 	{
 		for(int i = 0; i < 9; i++)
